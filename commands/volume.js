@@ -4,22 +4,22 @@ const sendError = require("../util/error");
 module.exports = {
   info: {
     name: "volume",
-    description: "To change the server song queue volume",
+    description: "Untuk mengubah volume antrian lagu server",
     usage: "[volume]",
     aliases: ["v"],
   },
 
   run: async function (client, message, args) {
     const channel = message.member.voice.channel;
-    if (!channel)return sendError("I'm sorry but you need to be in a voice channel to play music!", message.channel);
+    if (!channel)return sendError("Maaf, tapi Anda harus berada di voice channel untuk bermain music!", message.channel);
     const serverQueue = message.client.queue.get(message.guild.id);
-    if (!serverQueue) return sendError("There is nothing playing in this server.", message.channel);
+    if (!serverQueue) return sendError("Tidak ada yang diputar di server ini.", message.channel);
     if (!args[0])return message.channel.send(`The current volume is: **${serverQueue.volume}**`);
     serverQueue.volume = args[0]; 
     serverQueue.connection.dispatcher.setVolumeLogarithmic(args[0] / 5);
     let xd = new MessageEmbed()
-    .setDescription(`I set the volume to: **${args[0]/5}/5**(it will be divied by 5)`)
-    .setTitle("Server Volume Manager")
+    .setDescription(`Saya mengatur volume ke: **${args[0]/5}/5**(itu akan dibagi 5)`)
+    .setTitle("Manager Volume Server")
     .setColor("BLUE")
     return message.channel.send(xd);
   },
