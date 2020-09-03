@@ -4,23 +4,23 @@ const sendError = require("../util/error")
 module.exports = {
   info: {
     name: "nowplaying",
-    description: "To show the music which is currently playing in this server",
+    description: "Untuk menampilkan musik yang sedang diputar di server ini",
     usage: "",
     aliases: ["np"],
   },
 
   run: async function (client, message, args) {
     const serverQueue = message.client.queue.get(message.guild.id);
-    if (!serverQueue) return sendError("There is nothing playing in this server.", message.channel);
+    if (!serverQueue) return sendError("Tidak ada yang diputar di server ini.", message.channel);
     let song = serverQueue.songs[0]
     let thing = new MessageEmbed()
-      .setAuthor("Now Playing", song.req.displayAvatarURL({ dynamic: true }))
+      .setAuthor("Sedang dimainkan", song.req.displayAvatarURL({ dynamic: true }))
       .setThumbnail(song.img)
       .setColor("BLUE")
-      .addField("Name", song.title, true)
-      .addField("Duration", song.duration, true)
-      .addField("Requested by", song.req.tag, true)
-      .setFooter(`Views: ${song.views} | ${song.ago}`)
+      .addField("Nama", song.title, true)
+      .addField("Durasi", song.duration, true)
+      .addField("Diminta oleh", song.req.tag, true)
+      .setFooter(`Tampilan: ${song.views} | ${song.ago}`)
     return message.channel.send(thing)
   },
 };
