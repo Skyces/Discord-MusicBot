@@ -4,7 +4,7 @@ const sendError = require("../util/error");
 module.exports = {
   info: {
     name: "resume",
-    description: "To resume the paused music",
+    description: "Untuk melanjutkan musik yang dijeda",
     usage: "",
     aliases: [],
   },
@@ -15,11 +15,11 @@ module.exports = {
       serverQueue.playing = true;
       serverQueue.connection.dispatcher.resume();
       let xd = new MessageEmbed()
-      .setDescription("▶ Resumed the music for you!")
+      .setDescription("▶ Lanjutkan music untuk Anda!")
       .setColor("YELLOW")
-      .setTitle("Music has been Resumed!")
+      .setTitle("Music telah Dilanjutkan!")
       return message.channel.send(xd);
     }
-    return sendError("There is nothing playing in this server.", message.channel);
+    return sendError("Tidak ada yang diputar di server ini.", message.channel);
   },
 };
