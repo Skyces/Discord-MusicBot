@@ -4,7 +4,7 @@ const sendError = require("../util/error");
 module.exports = {
   info: {
     name: "pause",
-    description: "To pause the current music in the server",
+    description: "Untuk menghentikan musik",
     usage: "",
     aliases: [""],
   },
@@ -15,11 +15,11 @@ module.exports = {
       serverQueue.playing = false;
       serverQueue.connection.dispatcher.pause();
       let xd = new MessageEmbed()
-      .setDescription("⏸ Paused the music for you!")
+      .setDescription("⏸ Jeda musik untuk Anda!")
       .setColor("YELLOW")
-      .setTitle("Music has been paused!")
+      .setTitle("Musik telah dijeda!")
       return message.channel.send(xd);
     }
-    return sendError("There is nothing playing in this server.", message.channel);
+    return sendError("Tidak ada yang diputar di server ini.", message.channel);
   },
 };
